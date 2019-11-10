@@ -2,14 +2,14 @@ import java.awt.Graphics2D
 import java.awt.Image
 import javax.imageio.ImageIO
 
-open abstract class Stage{
+abstract class Stage{
+    var tick: Int = 0
+    var maxTick: Int = 360
+
     abstract fun draw(graphics2D: Graphics2D)
 }
 
 class Stage0 : Stage(){
-    var tick: Int = 0
-    var maxTick: Int = 360
-
     override fun draw(graphics2D: Graphics2D) {
         if (maxTick == tick){ Run.main.stage = 1; return }
 
@@ -26,9 +26,6 @@ class Stage0 : Stage(){
 }
 
 class Stage1 : Stage(){
-    var tick: Int = 0
-    var maxTick: Int = 360
-
     override fun draw(graphics2D: Graphics2D) {
         if (maxTick == tick){ Run.main.stage = 2; return }
 
@@ -60,9 +57,6 @@ class Stage1 : Stage(){
 }
 
 class Stage2 : Stage(){
-    var tick: Int = 0
-    var maxTick: Int = 360
-
     override fun draw(graphics2D: Graphics2D) {
         if (maxTick == tick){ Run.main.stage = 3; return }
 
@@ -71,7 +65,7 @@ class Stage2 : Stage(){
 
         val transform = graphics2D.transform
 
-        for ( i in 0..3 ){
+        for ( i in 0..2 ){
             graphics2D.rotate(Math.toRadians((tick+(i*120)).toDouble()), (width/2).toDouble(), (height/2).toDouble())
 
             graphics2D.drawImage(Stages.coffee, (width/4), 0, width/2, height/2, null)
@@ -89,9 +83,6 @@ class Stage2 : Stage(){
 }
 
 class Stage3 : Stage(){
-    var tick: Int = 0
-    var maxTick: Int = 360
-
     override fun draw(graphics2D: Graphics2D) {
         if (maxTick == tick){ Run.main.stage = 4; return }
 
@@ -100,7 +91,7 @@ class Stage3 : Stage(){
 
         val transform = graphics2D.transform
 
-        for ( i in 0..4 ){
+        for ( i in 0..3 ){
             graphics2D.rotate(Math.toRadians((tick+(i*90)).toDouble()), (width/2).toDouble(), (height/2).toDouble())
 
             graphics2D.drawImage(Stages.coffee, (width/4), tick, width/2, height/2, null)
@@ -118,9 +109,7 @@ class Stage3 : Stage(){
 }
 
 class Stage4 : Stage(){
-    var tick: Int = 0
-    var offset: Int = 1
-    var maxTick: Int = 360
+    private var offset: Int = 1
 
     override fun draw(graphics2D: Graphics2D) {
         if (maxTick == tick){ offset = -1 }
@@ -130,7 +119,7 @@ class Stage4 : Stage(){
 
         val transform = graphics2D.transform
 
-        for ( i in 0..5 ){
+        for ( i in 0..4 ){
             graphics2D.rotate(Math.toRadians((tick+(i*(360/5))).toDouble()), (width/2).toDouble(), (height/2).toDouble())
 
             graphics2D.drawImage(Stages.coffee, (width/4), tick, width/(i+2), height/(i+2), null)

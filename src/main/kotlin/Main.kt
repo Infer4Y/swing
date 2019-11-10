@@ -1,10 +1,8 @@
-
 import java.awt.*
 import javax.swing.JFrame
 import java.util.*
 import kotlin.concurrent.schedule
 import java.awt.Color
-
 
 open class Main(title: String) : JFrame(title) {
     var i : Double = 0.toDouble()
@@ -74,6 +72,8 @@ object Run {
     @JvmStatic
     fun main(args: Array<String>) {
         main = Main("Test")
-        late()
+        timer.schedule(5000){
+            late()
+        }
     }
 }
